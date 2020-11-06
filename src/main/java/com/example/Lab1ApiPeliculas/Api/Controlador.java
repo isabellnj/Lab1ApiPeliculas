@@ -37,9 +37,82 @@ public class Controlador {
     ));
 
 
+    //Ejercicio3 --> sacar lista
     @GetMapping("/movies")
     public List<Movie> getall(){
 
     return arraylist;
+    }
+
+    //Ejercicio4--> filtrado de peliculas por año y/o titulo
+
+
+    public List<Movie> GetAllPeliculas() {
+    ArrayList<Movie>movies = new ArrayList<>();
+        for (Movie movie1: arraylist){
+
+            movies.add(new Movie(movie1.getId(), movie1.getTitle(), movie1.getYear(), movie1.getPoster()));
+        }
+    return movies;
+    }
+
+
+    public List<Movie>GetTitle ( String title){
+    ArrayList<Movie>movie = new ArrayList<>();
+        for (Movie movie1: arraylist){
+             if (movie1.getTitle().contains(title)){
+                movie.add(new Movie(movie1.getId(), movie1.getTitle(), movie1.getYear(), movie1.getPoster()));
+            }
+        }
+        return movie;
+    }
+
+
+    public List<Movie>GetYear ( int  year){
+    ArrayList<Movie>movies = new ArrayList<>();
+        for (Movie movie1: arraylist){
+            if (movie1.getYear()==year){
+                movies.add(new Movie(movie1.getId(), movie1.getTitle(), movie1.getYear(), movie1.getPoster()));
+            }
+         }
+     return movies;
+    }
+
+    public List<Movie>GetYearTitle ( String title,int  year){
+    ArrayList<Movie>movie = new ArrayList<>();
+        for (Movie movies: arraylist){
+            if (movies.getTitle().contains(title) && movies.getYear()==year){
+                movie.add(new Movie( movies.getId(), movies.getTitle(), movies.getYear(), movies.getPoster()));
+            }
+        }
+    return movie;
+    }
+
+
+    @GetMapping("/moviesFiltrado")
+    public List titleYearfilmm(@RequestParam(name = "title", required = false, defaultValue = "")
+    String title, @RequestParam(name= "year", required = false, defaultValue ="0" ) int year){
+        if (title.equals("") && year ==0){
+            return GetAllPeliculas();
+        }
+
+        if (!title.equals("")&& year==0){ 
+            return GetTitle(title);
+        }
+
+         if (title.equals("") && year!=0){
+
+            return GetYear(year);
+        }
+
+        if (!title.equals("")&& year!=0){
+
+            return GetYearTitle(title, year);
+        }
+
+    return null;
+    }
 }
-}
+
+
+
