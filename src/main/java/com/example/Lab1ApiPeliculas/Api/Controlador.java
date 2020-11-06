@@ -28,10 +28,11 @@ public class Controlador {
    
     private static List<Movie>arraylist = new ArrayList(Arrays.asList(
         new Movie(1,"Pulp Fiction", 1994, "url"),
-        new Movie(2,"ea vida es bella", 1997, "url"),
+        new Movie(2,"La vida es bella", 1997, "url"),
         new Movie(3,"El club de la lucha (1999)", 1999, "url"),
         new Movie(4,"la lista de Schindler (1993)", 1993, "url"),
-        new Movie(5,"la naranja mecánica (1971)", 1971, "url")
+        new Movie(5,"la naranja mecánica (1971)", 1971, "url"),
+        new Movie(6,"KKK", 1971, "url")
 
 
     ));
