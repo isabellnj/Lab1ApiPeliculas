@@ -24,7 +24,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Controlador {
+public class ControladorPeliculas {
    
     private static List<Movie>arraylist = new ArrayList(Arrays.asList(
         new Movie(1,"Pulp Fiction", 1994, "url"),
@@ -165,6 +165,19 @@ public class Controlador {
             }
         return null;
     }
+
+
+
+    //Ejercicio6 --> multilenguaje
+
+
+    @GetMapping("/movies/text")
+    public String Text (@RequestParam(name = "lang", required = false, defaultValue = "") String lang)
+    {
+     var locale = new Locale(lang);
+      var messages = ResourceBundle.getBundle("i18n\\mesagges", locale);
+      return messages.getString("Main.film");
+   }
 
 
 }
