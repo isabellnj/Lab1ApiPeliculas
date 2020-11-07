@@ -33,9 +33,7 @@ public class Controlador {
         new Movie(4,"la lista de Schindler (1993)", 1993, "url"),
         new Movie(5,"la naranja mecánica (1971)", 1971, "url"),
         new Movie(6,"KKK", 1971, "url")
-
-
-    ));
+     ));
 
 
     //Ejercicio3 --> sacar lista
@@ -113,6 +111,62 @@ public class Controlador {
 
     return null;
     }
+
+
+    //Ejercicio5 --> CRUD
+
+
+    //Filtrar pelicula por id
+    @GetMapping("/movie/{id}")
+    public Movie MovieById(@PathVariable("id") final int id) {
+       
+        for (final Movie movie: arraylist){
+            if (movie.getId() == id){
+                return movie;
+                
+            }
+        }
+        return null;
+    }
+
+    //Añadir pelicula
+    @PostMapping("/moviesAdd")
+    public Movie addMovie(@RequestBody Movie newMovie) {
+        for (Movie movie : arraylist) {
+            if (movie.getId() == newMovie.getId()) {
+                return null;
+            }
+        }
+        arraylist.add(newMovie);
+        return (Movie) newMovie;
+    }
+
+    //Modificar pelicula
+    @PutMapping("/movies/{id}")
+    public Movie Update(@RequestBody Movie updaMovie, @PathVariable("id") int id){
+        if (MovieById(id)!=null){
+            MovieById(id).setTitle(updaMovie.getTitle());
+            MovieById(id).setYear(updaMovie.getYear());
+            MovieById(id).setPoster(updaMovie.getPoster());
+            return MovieById(id);
+        }
+    return null;
+    }
+
+
+    //borrar pelicula
+    @DeleteMapping("/movies/{id}")
+    public Movie deleMovie(@PathVariable("id") int id) {
+        for (Movie movie : arraylist) {
+            if (movie.getId() == id) {
+                    arraylist.remove(movie);
+                    return null;
+                }
+            }
+        return null;
+    }
+
+
 }
 
 
