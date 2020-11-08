@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ControllerTraductor {
 
 
-    //Ejericicio7-->idioma en html
+    //Ejericicio7
 
     @GetMapping("/testhtml")
     public String Test(){
@@ -16,7 +16,13 @@ public class ControllerTraductor {
 
     }
 
+    //Ejercicio9 
+    @GetMapping("/testhtml3")
+    public String Test3(){
+        
+        return "test3";
 
+    }
 
     //Ejericicio8
     @GetMapping("/testhtml1")
